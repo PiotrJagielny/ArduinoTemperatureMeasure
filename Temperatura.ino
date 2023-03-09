@@ -1,32 +1,26 @@
-#include <LiquidCrystal.h>
 
-LiquidCrystal lcd(1, 2, 4, 5, 6, 7);
 
 void setup() {
-  Serial.begin(9600);
-  lcd.begin(16,2);
 
+  for(int i = 0 ; i < 12 ; ++i)
+  {
+    pinMode(i,OUTPUT);
+  }
+  
 }
 
-float AnalogTemp = A5;
-float temperatura;
+
+
 void loop() {
 
-  lcd.setCursor(0,0);
-  lcd.print("Hello");
-  lcd.setCursor(2,1);
-  lcd.print("World");
+  for(int i = 0 ; i < 8 ; ++i)
+  {
+    digitalWrite(i, HIGH);
+  }
 
-  
-  float DigitalTemp = analogRead(AnalogTemp);
-  float voltage = DigitalTemp*(5.0/1023.0);
-  float temperature = voltage*100.0;
+  for(int i = 8 ; i < 12 ; ++i)
+  {
+    digitalWrite(i, LOW);
+  }  
 
-  Serial.print("Temperature: ");
-  Serial.print(temperature);
-  Serial.print("  ");
-  Serial.print("Voltage: ");
-  Serial.print(voltage);
-  Serial.print("\n");
-  delay(1000);
 }
